@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.input-container {
+  @apply w-full  border border-gray-300 rounded-lg;
+}
+
+.label-text {
+  @apply block text-lg mb-2 text-[#2C4373];
+}
+
+.input-div {
+  @apply flex flex-col md:flex-row gap-6;
+}
