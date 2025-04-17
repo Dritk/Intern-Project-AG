@@ -24,7 +24,12 @@ interface SidebarProps {
 const AppSidebar: React.FC<SidebarProps> = ({ collapsed }) => {
   const location = useLocation();
   return (
-    <Sidebar collapsed={collapsed} width="250px" collapsedWidth="80px">
+    <Sidebar
+      collapsed={collapsed}
+      width="250px"
+      collapsedWidth="80px"
+      className="bg-white"
+    >
       <div className="flex items-center justify-center  py-6">
         <img
           src={collapsed ? "/Annapurna-logo-small.png" : "/Annapurna-logo.png"}
@@ -52,7 +57,7 @@ const AppSidebar: React.FC<SidebarProps> = ({ collapsed }) => {
         </SubMenu>
 
         <SubMenu label="Products" icon={<Package size={18} />}>
-          <MenuItem active>Overview</MenuItem>
+          <MenuItem>Overview</MenuItem>
           <MenuItem>Add Auction</MenuItem>
           <MenuItem>Auction List</MenuItem>
           <MenuItem>Product List</MenuItem>
