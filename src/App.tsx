@@ -1,11 +1,6 @@
-import Signup from "./pages/Signup";
+import { RouterProvider } from "react-router-dom";
+import router from "./routes/route";
 
-const App = () => {
-  return (
-    <div className="flex  justify-center items-center h-screen mx-auto py-2.5 px-8 ">
-      <Signup />
-    </div>
-  );
-};
+const App = () => <RouterProvider router={router} />;
 
 export default App;

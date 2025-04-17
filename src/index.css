@@ -13,3 +13,7 @@
 .input-div {
   @apply flex flex-col md:flex-row gap-6;
 }
+
+.active-menu {
+  @apply text-red-500;
+}

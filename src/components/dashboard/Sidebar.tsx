@@ -15,24 +15,19 @@ import {
   Store,
   Layout,
 } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 interface SidebarProps {
   collapsed: boolean;
 }
 
 const AppSidebar: React.FC<SidebarProps> = ({ collapsed }) => {
+  const location = useLocation();
   return (
-    <Sidebar
-      collapsed={collapsed}
-      width="260px"
-      collapsedWidth="80px"
-      className="app"
-    >
-      <div className="flex items-center justify-between px-4 py-3">
+    <Sidebar collapsed={collapsed} width="250px" collapsedWidth="80px">
+      <div className="flex items-center justify-center  py-6">
         <img
-          src={
-            collapsed ? "./Annapurna-logo-small.png" : "./Annapurna-logo.png"
-          }
+          src={collapsed ? "/Annapurna-logo-small.png" : "/Annapurna-logo.png"}
           alt="Logo"
           className="h-10 cursor-pointer"
         />
@@ -40,8 +35,20 @@ const AppSidebar: React.FC<SidebarProps> = ({ collapsed }) => {
 
       <Menu>
         <SubMenu label="Home" icon={<Home size={18} />}>
-          <MenuItem> Overview </MenuItem>
-          <MenuItem>Analytics</MenuItem>
+          <MenuItem
+            component={<Link to="/home" />}
+            className={location.pathname === "/home" ? "active-menu" : ""}
+          >
+            Overview
+          </MenuItem>
+          <MenuItem
+            component={<Link to="/home/analytics" />}
+            className={
+              location.pathname === "/home/analytics" ? "active-menu" : ""
+            }
+          >
+            Analytics
+          </MenuItem>
         </SubMenu>
 
         <SubMenu label="Products" icon={<Package size={18} />}>
