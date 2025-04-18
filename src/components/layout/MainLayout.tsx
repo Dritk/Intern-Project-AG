@@ -11,11 +11,11 @@ const MainLayout = () => {
   };
 
   return (
-    <div className="flex min-h-screen w-full">
+    <div className="flex min-h-screen w-full ">
       <AppSidebar collapsed={collapsed} />
       <div className="flex flex-col flex-1">
         <Navbar toggleSidebar={toggleSidebar} />
-        <main className="flex-1 p-4">
+        <main className="flex-1 p-8 bg-[#F5F5F5]">
           <Outlet />
         </main>
       </div>

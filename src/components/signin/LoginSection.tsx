@@ -37,7 +37,7 @@ const LoginSection = () => {
       methods.reset();
 
       setTimeout(() => {
-        navigate("/dashboard");
+        navigate("/home");
       }, 2000);
     },
     onError: (error: any) => {
@@ -53,7 +53,7 @@ const LoginSection = () => {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-y-3">
+      <form onSubmit={handleSubmit} className="flex flex-col mr-10 gap-y-3">
         <InputField label="Email" id="email" type="email" />
         <div className="mb-4 relative">
           <InputField

@@ -1,10 +1,22 @@
-import { createBrowserRouter } from "react-router-dom";
-import ForgotPassword from "../components/signin/ForgotPassword";
+import { createBrowserRouter, Navigate } from "react-router-dom";
+import Cookies from "js-cookie";
 import Signin from "../pages/SignIn";
 import Signup from "../pages/Signup";
+import ForgotPassword from "../components/signin/ForgotPassword";
 import MainLayout from "../components/layout/MainLayout";
-import HomePage from "../pages/Dashboard/HomePage";
-import Analytics from "../pages/Dashboard/Analytics";
+import HomePage from "../pages/dashboard/HomePage";
+import Analytics from "../pages/dashboard/Analytics";
+import { JSX } from "react/jsx-runtime";
+
+const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
+  const token = Cookies.get("token");
+
+  if (!token) {
+    return <Navigate to="/signin" replace />;
+  }
+
+  return children;
+};
 
 const router = createBrowserRouter([
   {
@@ -22,7 +34,11 @@ const router = createBrowserRouter([
 
   {
     path: "/",
-    element: <MainLayout />,
+    element: (
+      <ProtectedRoute>
+        <MainLayout />
+      </ProtectedRoute>
+    ),
     children: [
       { index: true, element: <HomePage /> },
       { path: "home", element: <HomePage /> },
