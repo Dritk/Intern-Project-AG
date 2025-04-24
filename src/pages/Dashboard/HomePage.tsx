@@ -1,49 +1,79 @@
-import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
+import { DollarSign, ShoppingBag, SquareX, ThumbsUp } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import Card from "../../components/common/DashboardMetricCard";
+import StatCard from "../../components/common/StatCard";
+import OverallSummary from "../../components/common/OverallSummary";
+import SupplierLikesChart from "../../components/charts/SupplierLikesChart";
+import { homepageSummary } from "../../utils/api";
+import ChartCard from "../../components/common/ChartCard";
 
 const HomePage = () => {
-  const [hidden, setHidden] = useState(true);
-  const revenue = 12345.67;
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["homeSummary"],
+    queryFn: homepageSummary,
+  });
 
-  const handleToggleVisibility = () => {
-    setHidden(!hidden);
-  };
-
-  const formatRevenue = (amount: number): string => {
-    return new Intl.NumberFormat("en-US", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(amount);
-  };
-
-  const displayValue = hidden ? "X XXX.XX" : formatRevenue(revenue);
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Failed to load dashboard data</p>;
 
   return (
-    <div className="bg-white  p-6 flex flex-col md:flex-row justify-between items-center rounded-lg shadow-md">
-      <div className="">
-        <p className="text-blue-900 text-2xl">
-          <span className="text-gray-500">Greetings</span>, Annapurna Testing
-          Galleries
-        </p>
-        <p className="text-gray-500 text-md">Your Performance Summary</p>
+    <div className="flex flex-col gap-y-6">
+      <div className="bg-white  p-6 flex flex-row justify-between items-center rounded-lg shadow-md">
+        <div>
+          <p className="text-blue-900 text-2xl">
+            <span className="text-gray-500">Greetings</span>, Annapurna Testing
+            Galleries
+          </p>
+          <p className="text-gray-500 text-md">Your Performance Summary</p>
+        </div>
+
+        <Card
+          title="Total Revenue"
+          bgColor="bg-blue-500"
+          value={`रु${data?.totalRevenue?.toLocaleString()}`}
+        />
       </div>
 
-      <div className="bg-blue-500 text-white p-4 rounded-lg w-[15%]  shadow-md">
-        <div className="flex items-center mb-1">
-          <h3 className="text-sm font-medium">Total Revenue</h3>
-          <div className="ml-1 rounded-full  w-5 h-5 flex items-center justify-center border-2 text-xs">
-            i
+      <div className="flex flex-row justify-between gap-x-6">
+        <OverallSummary summaryData={data} />
+        <div className="bg-white p-6 flex flex-col rounded-lg shadow-md w-2/5">
+          <p>Today's Summary</p>
+          <hr className="border-t border-gray-200 my-4" />
+          <div className="grid grid-cols-2 gap-4">
+            <StatCard
+              value={data?.recentSupplierLikeCount || 0}
+              label="Supplier Likes Today"
+              icon={<ThumbsUp className="text-blue-500" size={20} />}
+              iconBorderColor="border-blue-500"
+            />
+            <StatCard
+              value={`${(data?.recentSales / 1000).toFixed(1)}K`}
+              label="Total Sales Today"
+              icon={<DollarSign className="text-green-500" size={20} />}
+              iconBorderColor="border-green-500"
+            />
+            <StatCard
+              value={data?.recentOrderCount || 0}
+              label="Total Orders Today"
+              icon={<ShoppingBag className="text-yellow-500" size={20} />}
+              iconBorderColor="border-yellow-500"
+            />
+            <StatCard
+              value={data?.recentCancelledOrderCount || 0}
+              label="Order Cancelled Today"
+              icon={<SquareX className="text-red-500" size={20} />}
+              iconBorderColor="border-red-500"
+            />
           </div>
         </div>
-        <div className="flex items-center justify-between">
-          <p className="text-xl font-bold ">{displayValue}</p>
-          <button
-            onClick={handleToggleVisibility}
-            className="text-white"
-            aria-label={hidden ? "Show revenue" : "Hide revenue"}
-          >
-            {hidden ? <Eye size={18} /> : <EyeOff size={18} />}
-          </button>
+      </div>
+
+      <div className="w-full flex flex-row ">
+        <div className="bg-white p-6 w-[60%] rounded-md ">
+          <SupplierLikesChart />
+        </div>
+        <div className="bg-white p-6 w-[40%] border border-black text-blue-900 font-medium ">
+          <ChartCard />
         </div>
       </div>
     </div>

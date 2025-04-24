@@ -24,4 +24,27 @@ export const orderPieChartData = async () => {
   const { data } = await axiosInstance.get("/admin/home/overview/order");
   return data.result;
 };
+
+export const homepageSummary = async () => {
+  const { data } = await axiosInstance.get("/admin/home/overview");
+  return data;
+};
+
+export const supplierLikesData = async (
+  filter: "yearly" | "monthly" | "weekly"
+) => {
+  const { data } = await axiosInstance.get(
+    `/admin/home/overview/likes?filter=${filter}`
+  );
+  return data;
+};
+
+export const productSalesData = async (
+  filter: "yearly" | "monthly" | "weekly"
+) => {
+  const { data } = await axiosInstance.get(
+    `/admin/home/overview/productLikes?filter=${filter}`
+  );
+  return data;
+};
 //vagiho8046@avulos.com
