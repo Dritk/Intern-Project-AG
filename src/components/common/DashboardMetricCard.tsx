@@ -5,10 +5,12 @@ interface CardProps {
   title: string;
   value: string | number;
   bgColor?: string;
+  tooltip?: string;
 }
 
-const Card: React.FC<CardProps> = ({ title, value, bgColor }) => {
+const Card: React.FC<CardProps> = ({ title, value, bgColor, tooltip }) => {
   const [hidden, setHidden] = useState(true);
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
   const handleToggleVisibility = () => {
     setHidden(!hidden);
@@ -17,14 +19,28 @@ const Card: React.FC<CardProps> = ({ title, value, bgColor }) => {
   const displayValue = hidden ? "X XXX.XX" : value;
 
   return (
-    <div className={`${bgColor} text-white p-4 rounded-lg shadow-md w-[15%]`}>
-      <div className="flex items-center ">
+    <div
+      className={`${bgColor} text-white p-4 rounded-lg shadow-md lg:w-[15%] md:w-[25%] w-2/4`}
+    >
+      <div className="flex items-center">
         <h3 className="text-sm font-medium">{title}</h3>
-        <div
-          className={`ml-1 rounded-full w-5 h-5 flex items-center justify-center text-justify border-2 text-xs`}
-        >
-          i
-        </div>
+        {tooltip && (
+          <div className="ml-1 relative">
+            <button
+              className="rounded-full w-5 h-5 flex items-center justify-center border-2 text-xs cursor-pointer"
+              aria-label="Information"
+              onMouseEnter={() => setIsTooltipVisible(true)}
+              onMouseLeave={() => setIsTooltipVisible(false)}
+            >
+              i
+            </button>
+            {isTooltipVisible && (
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-[#6D6D6D] text-white text-xs rounded whitespace-normal w-80 ">
+                {tooltip}
+              </div>
+            )}
+          </div>
+        )}
       </div>
       <div className="flex items-center justify-between">
         <p className="text-xl font-bold">{displayValue}</p>

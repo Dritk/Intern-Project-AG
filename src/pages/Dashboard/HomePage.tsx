@@ -17,28 +17,38 @@ const HomePage = () => {
   if (error) return <p>Failed to load dashboard data</p>;
 
   return (
-    <div className="flex flex-col gap-y-6">
-      <div className="bg-white  p-6 flex flex-row justify-between items-center rounded-lg shadow-md">
+    <div className="flex flex-col gap-y-6 ">
+      <div className="bg-white  p-6 flex md:flex-row flex-col justify-between items-center rounded-lg shadow-md">
         <div>
           <p className="text-blue-900 text-2xl">
             <span className="text-gray-500">Greetings</span>, Annapurna Testing
             Galleries
           </p>
-          <p className="text-gray-500 text-md">Your Performance Summary</p>
+          <p className="text-gray-500 text-md mb-2">Your Performance Summary</p>
         </div>
 
         <Card
           title="Total Revenue"
           bgColor="bg-blue-500"
           value={`रु${data?.totalRevenue?.toLocaleString()}`}
+          tooltip="Total revenue is all the money we made from selling 
+          stuff on our site ( annapurna galleries comission rate+ amount 
+          to be received by supplier excluding comission rate). We subtract 
+          the returns and cancellations but don't count shipping costs or discounts. 
+          Here's the formula:Total Revenue = Total Ordered Product Amount – Ordered 
+          Product Returns(if any) - Ordered Product Cancellations (if any) 
+          Net Profit: Net profit is the total amount we received as commission from 
+          the supplier. Also amounts will be deducted if ordered products gets returned 
+          or canceled.Net Profit = Total Commision Sum - Product Returns Commision Sum 
+          (if any) - Product Cancellations Commision Sum (if any)"
         />
       </div>
 
-      <div className="flex flex-row justify-between gap-x-6">
+      <div className="flex md:flex-row flex-col justify-between md:gap-x-6 gap-y-6 ">
         <OverallSummary summaryData={data} />
-        <div className="bg-white p-6 flex flex-col rounded-lg shadow-md w-2/5">
-          <p>Today's Summary</p>
-          <hr className="border-t border-gray-200 my-4" />
+        <div className="bg-white p-6 flex flex-col w-full rounded-lg shadow-md md:w-2/5">
+          <p className="text-blue-900 font-medium">Today's Summary</p>
+          <hr className="my-4" />
           <div className="grid grid-cols-2 gap-4">
             <StatCard
               value={data?.recentSupplierLikeCount || 0}
@@ -68,12 +78,17 @@ const HomePage = () => {
         </div>
       </div>
 
-      <div className="w-full flex flex-row ">
-        <div className="bg-white p-6 w-[60%] rounded-md ">
+      <div className="w-full flex md:flex-row flex-col ">
+        <div className="bg-white p-6 md:w-[60%] w-full  ">
           <SupplierLikesChart />
         </div>
-        <div className="bg-white p-6 w-[40%] border border-black text-blue-900 font-medium ">
-          <ChartCard />
+        <div className="bg-white p-6 md:w-[40%] w-full border border-gray-200  text-blue-900 font-medium ">
+          <ChartCard
+            title="Supplier Likes Graph Analysis"
+            headers={["S/N", "Supplier Details", "UserList"]}
+            imageSrc="./Empty-product.png"
+            message="No Suppliers are liked by users during this period."
+          />
         </div>
       </div>
     </div>

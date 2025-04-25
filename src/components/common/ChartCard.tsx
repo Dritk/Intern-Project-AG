@@ -1,20 +1,25 @@
-const ChartCard = () => {
+type ChartCardProps = {
+  title: string;
+  headers: string[];
+  imageSrc: string;
+  message?: string;
+};
+
+const ChartCard = ({ title, headers, imageSrc, message }: ChartCardProps) => {
   return (
     <div className="flex flex-col">
-      <p>Supplier Likes Graph Analysis</p>
+      <p className="text-base font-medium">{title}</p>
       <hr className="my-4" />
-      <div className="flex flex-row gap-x-16">
-        <p className="">S/N</p>
-        <p>Supplier Details</p>
-        <p className="mx-20">UserList</p>
+      <div className="flex flex-row md:gap-x-32 ">
+        {headers.map((header) => (
+          <p key={header}>{header}</p>
+        ))}
       </div>
-      <hr className="my-4 flex " />
-      <div className="flex justify-center mt-8 ">
-        <img src="./Empty-product.png" alt="Empty Product" className="w-48" />
+      <hr className="my-4" />
+      <div className="flex justify-center mt-8">
+        <img src={imageSrc} alt="Empty State" className="w-48" />
       </div>
-      <p className="flex justify-center mt-2 opacity-50">
-        No Suppliers are liked by users during this period.
-      </p>
+      <p className="flex justify-center mt-2 opacity-50 text-sm">{message}</p>
     </div>
   );
 };

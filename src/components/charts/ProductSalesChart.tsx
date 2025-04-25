@@ -9,18 +9,18 @@ import {
   Label,
 } from "recharts";
 import { useQuery } from "@tanstack/react-query";
-import { supplierLikesData } from "../../utils/api";
+import { productSalesData } from "../../utils/api";
 import { useState } from "react";
 import { Funnel } from "lucide-react";
 
-const SupplierLikesChart = () => {
+const ProductSalesChart = () => {
   const [filter, setFilter] = useState<"yearly" | "monthly" | "weekly">(
     "yearly"
   );
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["supplierLikes", filter],
-    queryFn: () => supplierLikesData(filter),
+    queryFn: () => productSalesData(filter),
     staleTime: 1000 * 60 * 1,
   });
 
@@ -35,8 +35,6 @@ const SupplierLikesChart = () => {
       likes: item.count,
     })
   );
-
-  console.log(chartData);
 
   return (
     <div>
@@ -89,4 +87,4 @@ const SupplierLikesChart = () => {
   );
 };
 
-export default SupplierLikesChart;
+export default ProductSalesChart;

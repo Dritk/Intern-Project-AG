@@ -53,15 +53,15 @@ const OverallSummary = ({ summaryData }: { summaryData: any }) => {
   ];
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-sm w-[60%]">
-      <h2 className="text-md font-semibold text-gray-800 mb-2">
+    <div className="bg-white p-6 rounded-lg shadow-sm md:w-[60%] w-full">
+      <h2 className="text-md font-semibold text-blue-900 mb-2">
         Overall Summary
       </h2>
       <hr className="mb-4" />
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
         {summary.map((item) => (
           <div
-            key={summaryData}
+            key={item.label}
             className="flex flex-col items-center text-center"
           >
             <div className="text-gray-600 mb-1">{item.icon}</div>

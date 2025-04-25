@@ -49,7 +49,7 @@ const MultiStepForm = () => {
 
   const mutation = useMutation({
     mutationFn: registerUser,
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast.success("Account created successfully!", {
         transition: Slide,
         pauseOnFocusLoss: false,

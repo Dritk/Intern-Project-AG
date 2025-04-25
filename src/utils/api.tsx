@@ -47,4 +47,12 @@ export const productSalesData = async (
   );
   return data;
 };
+
+export const fetchNotifications = async () => {
+  const { data } = await axiosInstance.get(
+    "/admin/notification/list?limit=100&page=1"
+  );
+  return data.notification;
+};
+
 //vagiho8046@avulos.com
