@@ -36,8 +36,6 @@ const SupplierLikesChart = () => {
     })
   );
 
-  console.log(chartData);
-
   return (
     <div>
       <div className="flex justify-between items-center mb-4">

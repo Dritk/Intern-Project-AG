@@ -1,7 +1,9 @@
-import { MenuIcon, MessageSquareText, Bell } from "lucide-react";
+import { MenuIcon } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
 import pageTitles from "../../utils/pageTitles";
+import NotificationSection from "./Notification";
+import Messages from "./Messages";
 
 interface NavbarProps {
   toggleSidebar: () => void;
@@ -32,17 +34,17 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
 
       <h1 className="text-lg font-semibold flex-1 ml-4">{breadcrumb}</h1>
 
-      <div className="flex flex-row gap-x-6">
-        <MessageSquareText size={20} />
-        <Bell size={20} />
-      </div>
+      <div className="flex flex-row gap-x-14 items-center">
+        <Messages />
+        <NotificationSection />
 
-      <button
-        onClick={handleLogout}
-        className="p-2 text-sm font-semibold text-red-500"
-      >
-        Logout
-      </button>
+        <button
+          onClick={handleLogout}
+          className="p-2 text-sm font-semibold text-red-500"
+        >
+          Logout
+        </button>
+      </div>
     </nav>
   );
 };
