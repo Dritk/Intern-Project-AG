@@ -25,7 +25,7 @@ const SupplierLikesChart = () => {
   });
 
   if (isLoading) return <p>Loading chart...</p>;
-  if (isError || !data?.like || !Array.isArray(data.like)) {
+  if (isError) {
     return <p>Error loading chart data.</p>;
   }
 
