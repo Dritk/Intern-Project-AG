@@ -22,9 +22,14 @@ import { Link, useLocation } from "react-router-dom";
 interface SidebarProps {
   collapsed: boolean;
   toggled: boolean;
+  setToggled: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const AppSidebar: React.FC<SidebarProps> = ({ collapsed, toggled }) => {
+const AppSidebar: React.FC<SidebarProps> = ({
+  collapsed,
+  toggled,
+  setToggled,
+}) => {
   const location = useLocation();
 
   return (
@@ -36,6 +41,7 @@ const AppSidebar: React.FC<SidebarProps> = ({ collapsed, toggled }) => {
       backgroundColor="white"
       transitionDuration={800}
       breakPoint="md"
+      onBackdropClick={() => setToggled(false)}
     >
       <div className="flex items-center justify-center  py-6">
         <img

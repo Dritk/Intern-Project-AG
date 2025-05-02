@@ -14,7 +14,11 @@ const MainLayout = () => {
 
   return (
     <div className="flex min-h-screen w-full ">
-      <AppSidebar collapsed={collapsed} toggled={toggled} />
+      <AppSidebar
+        collapsed={collapsed}
+        toggled={toggled}
+        setToggled={setToggled}
+      />
       <div className="flex flex-col flex-1">
         <Navbar toggleSidebar={toggleSidebar} />
         <main className="flex-1 p-8 bg-[#F5F5F5]">
