@@ -1,9 +1,14 @@
 import { useContext } from "react";
-import { Funnel } from "lucide-react";
-
-import { yearlyFilterValues, monthFilterValues, weeklyFilterValues, YearlyType, MonthType, WeeklyType } from "../data/filterData";
+import {
+  monthFilterValues,
+  MonthType,
+  weeklyFilterValues,
+  WeeklyType,
+  yearlyFilterValues,
+  YearlyType,
+} from "../data/filterData";
 import { Context } from "../data/context";
-
+import CustomDropdown from "../CustomDropdown";
 
 type ChartCardProps = {
   title: string;
@@ -28,71 +33,42 @@ const ChartCard = ({ title, headers, imageSrc, message }: ChartCardProps) => {
       <div className="flex justify-between items-center">
         <p className="text-base font-medium">{title}</p>
 
-        {timeFilter === "yearly" && (
-          <div className="relative">
-            <select
-              value={yearlyFilter}
-              onChange={(e) => setYearlyFilter(e.target.value as YearlyType)}
-              className="appearance-none cursor-pointer border border-gray-300 rounded py-2 px-8 text-sm"
-            >
-              {yearlyFilterValues.map((month) => (
-                <option key={month} value={month}>
-                  {month}
-                </option>
-              ))}
-            </select>
-            <div className="absolute inset-y-0 right-1 flex items-center p-2">
-              <Funnel className="h-5 w-5" />
-            </div>
-          </div>
-        )}
+        <div className="relative text-black">
+          {timeFilter === "yearly" && (
+            <CustomDropdown
+              options={yearlyFilterValues}
+              selectedValue={yearlyFilter}
+              onSelect={(val) => setYearlyFilter(val as YearlyType)}
+              label="Select Year"
+            />
+          )}
 
-        {timeFilter === "monthly" && (
-          <div className="relative">
-            <select
-              value={monthFilter}
-              onChange={(e) => setMonthFilter(e.target.value as MonthType)}
-              className="appearance-none cursor-pointer border border-gray-300 rounded py-2 px-8 text-sm"
-            >
-              {monthFilterValues.map((month) => (
-                <option key={month} value={month}>
-                  {month}
-                </option>
-              ))}
-            </select>
-            <div className="absolute inset-y-0 right-1 flex items-center p-2">
-              <Funnel className="h-5 w-5" />
-            </div>
-          </div>
-        )}
+          {timeFilter === "monthly" && (
+            <CustomDropdown
+              options={monthFilterValues}
+              selectedValue={monthFilter}
+              onSelect={(val) => setMonthFilter(val as MonthType)}
+              label="Select Year"
+            />
+          )}
 
-        {timeFilter === "weekly" && (
-          <div className="relative">
-            <select
-              value={weeklyFilter}
-              onChange={(e) => setWeeklyFilter(e.target.value as WeeklyType)}
-              className="appearance-none cursor-pointer border border-gray-300 rounded py-2 px-8 text-sm"
-            >
-              {weeklyFilterValues.map((day) => (
-                <option key={day} value={day}>
-                  {day}
-                </option>
-              ))}
-            </select>
-            <div className="absolute inset-y-0 right-1 flex items-center p-2">
-              <Funnel className="h-5 w-5" />
-            </div>
-          </div>
-        )}
+          {timeFilter === "weekly" && (
+            <CustomDropdown
+              options={weeklyFilterValues}
+              selectedValue={weeklyFilter}
+              onSelect={(val) => setWeeklyFilter(val as WeeklyType)}
+              label="Select Year"
+            />
+          )}
+        </div>
       </div>
-
-      <hr className="my-4" />
+      <hr />
       <div className="flex flex-row gap-x-32">
         {headers.map((header) => (
           <p key={header}>{header}</p>
         ))}
       </div>
-      <hr className="my-4" />
+      <hr />
       <div className="flex justify-center mt-8">
         <img src={imageSrc} alt="Empty State" className="w-48" />
       </div>

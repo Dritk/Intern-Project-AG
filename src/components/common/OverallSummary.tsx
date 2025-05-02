@@ -57,7 +57,7 @@ const OverallSummary = ({ summaryData }: { summaryData: any }) => {
       <h2 className="text-md font-semibold text-blue-900 mb-2">
         Overall Summary
       </h2>
-      <hr className="mb-4" />
+      <hr />
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
         {summary.map((item) => (
           <div

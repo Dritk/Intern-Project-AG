@@ -17,3 +17,11 @@
 .active-menu {
   @apply text-red-500;
 }
+
+select {
+  @apply appearance-none cursor-pointer border border-gray-300 rounded py-2  px-8 text-sm focus:outline-none;
+}
+
+hr {
+  @apply my-4;
+}

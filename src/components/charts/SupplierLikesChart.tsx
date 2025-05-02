@@ -14,10 +14,7 @@ import { useContext } from "react";
 import { Funnel } from "lucide-react";
 import { Context } from "../data/context";
 
-
-
 const SupplierLikesChart = () => {
-
   const { timeFilter, setTimeFilter } = useContext(Context);
 
   const { data, isLoading, isError } = useQuery({
@@ -43,13 +40,12 @@ const SupplierLikesChart = () => {
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-medium text-blue-900">Supplier Likes</h2>
 
-        <div className="relative">
+        <div className="relative font-medium">
           <select
             value={timeFilter}
             onChange={(e) =>
               setTimeFilter(e.target.value as "yearly" | "monthly" | "weekly")
             }
-            className="appearance-none cursor-pointer border border-gray-300 rounded py-2 px-8 text-lg"
           >
             <option value="yearly">Yearly</option>
             <option value="monthly">Monthly</option>
@@ -60,7 +56,8 @@ const SupplierLikesChart = () => {
           </div>
         </div>
       </div>
-      <hr className="border-t border-gray-200 my-4" />
+
+      <hr />
 
       <ResponsiveContainer width="100%" height={350}>
         <AreaChart data={chartData}>

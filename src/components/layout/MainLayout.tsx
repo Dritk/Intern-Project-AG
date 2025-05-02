@@ -40,7 +40,7 @@ const MainLayout = () => {
 
   return (
     <Context.Provider value={contextValue}>
-      <div className="flex min-h-screen w-full">
+      <div className="flex  w-full overflow-hidden">
         <AppSidebar collapsed={collapsed} toggled={toggled} />
         <div className="flex flex-col flex-1">
           <Navbar toggleSidebar={toggleSidebar} />

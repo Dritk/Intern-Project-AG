@@ -48,7 +48,7 @@ const HomePage = () => {
         <OverallSummary summaryData={data} />
         <div className="bg-white p-6 flex flex-col w-full rounded-lg shadow-md md:w-2/5">
           <p className="text-blue-900 font-medium">Today's Summary</p>
-          <hr className="my-4" />
+          <hr />
           <div className="grid grid-cols-2 gap-4">
             <StatCard
               value={data?.recentSupplierLikeCount || 0}
