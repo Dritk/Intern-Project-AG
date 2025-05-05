@@ -14,152 +14,123 @@ import {
   Store,
   Layout,
 } from "lucide-react";
+import { ReactNode } from "react";
 
-export const sidebarItems = [
+interface MenuItemType {
+  label: string;
+  icon?: ReactNode;
+  to?: string;
+  children?: MenuItemType[];
+}
+
+const sidebarData: MenuItemType[] = [
   {
-    title: "Home",
-    icon: <Home size={20} />,
-    path: "/home",
-    submenu: [
-      { title: "Overview", path: "/dashboard/overview" },
-      { title: "Analytics", path: "/dashboard/analytics" },
+    label: "Home",
+    icon: <Home size={18} />,
+    children: [
+      { label: "Overview", to: "/home" },
+      { label: "Analytics", to: "/home/analytics" },
     ],
   },
   {
-    title: "Products",
-    icon: <Package size={20} />,
-    path: "/products",
-    submenu: [
-      { title: "Overview", path: "/dashboard" },
-      { title: "Add Auction", path: "/dashboard" },
-      { title: "Auction List", path: "/dashboard" },
-      { title: "Product List", path: "/dashboard" },
-      { title: "Sold Product List", path: "/dashboard" },
-      { title: "Not For Sale", path: "/dashboard" },
+    label: "Products",
+    icon: <Package size={18} />,
+    children: [
+      { label: "Overview" },
+      { label: "Add Auction" },
+      { label: "Auction List" },
+      { label: "Product List" },
+      { label: "Sold Product List" },
+      { label: "Not For Sale" },
     ],
   },
   {
-    title: "Orders",
-    icon: <ShoppingCart size={20} />,
-    path: "/orders",
-    submenu: [
-      { title: "Overview", path: "Order List" },
-      { title: "Order List", path: "" },
-      { title: "Order Tracking", path: "" },
-      { title: "Order Returns", path: "" },
-      { title: "Cancelled Order", path: "" },
-      { title: "Manual Order", path: "" },
+    label: "Orders",
+    icon: <ShoppingCart size={18} />,
+    children: [
+      { label: "Overview" },
+      { label: "Order List" },
+      { label: "Order Tracking" },
+      { label: "Order Returns" },
+      { label: "Cancelled Order" },
+      { label: "Manual Order" },
     ],
   },
   {
-    title: "Finance",
-    icon: <Wallet size={20} />,
-    path: "/finance",
-    submenu: [
-      { title: "Overview", path: "" },
-      { title: "Invoice List", path: "" },
-      { title: "Withdraw", path: "" },
+    label: "Finance",
+    icon: <Wallet size={18} />,
+    children: [
+      { label: "Overview" },
+      { label: "Invoice List" },
+      { label: "Withdraw" },
     ],
   },
   {
-    title: "Users",
-    icon: <Users size={20} />,
-    path: "/users",
-    submenu: [
-      { title: "Supplier List", path: "" },
-      { title: "Feature Artists", path: "" },
-      { title: "Customer List", path: "" },
-      { title: "Reviewer List", path: "" },
-      { title: "Cart / Wishlist List", path: "" },
+    label: "Users",
+    icon: <Users size={18} />,
+    children: [
+      { label: "Supplier List" },
+      { label: "Feature Artists" },
+      { label: "Customer List" },
+      { label: "Reviewer List" },
+      { label: "Cart / Wishlist List" },
     ],
   },
   {
-    title: "Blogs",
-    icon: <FileText size={20} />,
-    path: "/blogs",
-    submenu: [
-      { title: "Overview", path: "" },
-      { title: "Blog Category", path: "" },
-      { title: "Blog Tags", path: "" },
+    label: "Blogs",
+    icon: <FileText size={18} />,
+    children: [
+      { label: "Overview" },
+      { label: "Blog Category" },
+      { label: "Blog Tags" },
     ],
   },
+  { label: "Coupons", icon: <Percent size={18} /> },
+  { label: "Subscribers", icon: <Mail size={18} /> },
+  { label: "Tickets", icon: <HelpCircle size={18} /> },
+  { label: "Bg Images", icon: <Image size={18} /> },
   {
-    title: "Coupons",
-    icon: <Percent size={20} />,
-    path: "/coupons",
-    submenu: [],
-  },
-  {
-    title: "Subscribers",
-    icon: <Mail size={20} />,
-    path: "/subscribers",
-    submenu: [],
-  },
-  {
-    title: "Tickets",
-    icon: <HelpCircle size={20} />,
-    path: "/tickets",
-    submenu: [],
-  },
-  {
-    title: "Bg Images",
-    icon: <Image size={20} />,
-    path: "/background-images",
-    submenu: [],
-  },
-  {
-    title: "Settings",
-    icon: <Settings size={20} />,
-    path: "/settings",
-    submenu: [
-      { title: "Site Settings", path: "" },
-      { title: "Currency", path: "" },
+    label: "Settings",
+    icon: <Settings size={18} />,
+    children: [
+      { label: "Site Settings" },
+      { label: "Currency" },
       {
-        title: "Product",
-        path: "",
-        submenu: [
-          { title: "Category", path: "" },
-          { title: "Attribute", path: "" },
-          { title: "Material", path: "" },
-          { title: "Tag", path: "" },
+        label: "Product",
+        children: [
+          { label: "Category" },
+          { label: "Attribute" },
+          { label: "Material" },
+          { label: "Tag" },
         ],
       },
-      { title: "Role Based Access", path: "" },
-      { title: "Role Management", path: "" },
-      { title: "Shipping cost", path: "" },
-      { title: "Bid Increments", path: "" },
-      { title: "Shipping Weight", path: "" },
-      { title: "Social Media", path: "" },
-      { title: "Ticket (Subject) ", path: "" },
-      { title: "Permission", path: "" },
-      { title: "Return Condition", path: "" },
-      { title: "Refund Deduction", path: "" },
-      { title: "Banner Setting", path: "" },
-      { title: "Popup Banner", path: "" },
+      { label: "Role Based Access" },
+      { label: "Role Management" },
+      { label: "Shipping Cost" },
+      { label: "Bid Increments" },
+      { label: "Shipping Weight" },
+      { label: "Social Media" },
+      { label: "Ticket (Subject)" },
+      { label: "Permission" },
+      { label: "Return Condition" },
+      { label: "Refund Deduction" },
+      { label: "Banner Setting" },
+      { label: "Popup Banner" },
     ],
   },
+  { label: "Virtual Exhibition", icon: <Monitor size={18} /> },
+  { label: "Physical Exhibition", icon: <Store size={18} /> },
   {
-    title: "Virtual Exhibition",
-    icon: <Monitor size={20} />,
-    path: "/virtual-exhibition",
-    submenu: [],
-  },
-  {
-    title: "Physical Exhibition",
-    icon: <Store size={20} />,
-    path: "/physical-exhibition",
-    submenu: [],
-  },
-  {
-    title: "Footer",
-    icon: <Layout size={20} />,
-    path: "/footer",
-    submenu: [
-      { title: "Footer Category", path: "" },
-      { title: "Artist Support", path: "" },
-      { title: "Buyer Support", path: "" },
-      { title: "Faqs Support", path: "" },
-      { title: "Contact Us", path: "" },
+    label: "Footer",
+    icon: <Layout size={18} />,
+    children: [
+      { label: "Footer Category" },
+      { label: "Artist Support" },
+      { label: "Buyer Support" },
+      { label: "Faqs Support" },
+      { label: "Contact Us" },
     ],
   },
 ];
+
+export default sidebarData;
