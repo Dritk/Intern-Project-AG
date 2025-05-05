@@ -63,7 +63,7 @@ const ChartCard = ({ title, headers, imageSrc, message }: ChartCardProps) => {
         </div>
       </div>
       <hr />
-      <div className="flex flex-row gap-x-32">
+      <div className="flex flex-row lg:gap-x-32 md:gap-x-14 sm:gap-x-28">
         {headers.map((header) => (
           <p key={header}>{header}</p>
         ))}
