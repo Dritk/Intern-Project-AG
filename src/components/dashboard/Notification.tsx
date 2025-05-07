@@ -2,12 +2,19 @@ import React, { useEffect, useState } from "react";
 import { Bell } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchNotifications } from "../../utils/api";
+import { NotificationType } from "../../utils/types/notificationType";
 
+interface Notification {
+  id: number;
+  order_status: string;
+  message: string;
+  createdAt: Date;
+}
 const Notification: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [localNotifications, setLocalNotifications] = useState<any[] | null>(
-    null
-  );
+  const [localNotifications, setLocalNotifications] = useState<
+    NotificationType[] | null
+  >(null);
 
   const {
     data: notifications,
@@ -24,7 +31,7 @@ const Notification: React.FC = () => {
     }
   }, [notifications, localNotifications]);
 
-  const renderIcon = (status: any) => {
+  const renderIcon = (status: string) => {
     switch (status) {
       case "Completed":
         return <img src="/completeOrderIcon.png" alt="Complete Order" />;
@@ -54,7 +61,9 @@ const Notification: React.FC = () => {
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error loading notifications</div>;
 
-  const unreadCount = localNotifications?.filter((n) => !n.is_read).length || 0;
+  const unreadCount =
+    localNotifications?.filter((notification) => !notification.is_read)
+      .length || 0;
 
   return (
     <div className="relative inline-block">
@@ -80,7 +89,7 @@ const Notification: React.FC = () => {
           </div>
 
           <ul>
-            {localNotifications?.map((notification: any) => (
+            {localNotifications?.map((notification: NotificationType) => (
               <li
                 key={notification.id}
                 className="flex px-4 py-5 border-b border-gray-100"

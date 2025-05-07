@@ -6,12 +6,16 @@ export const loginUser = async (data: { email: string; password: string }) => {
   return response.data;
 };
 
-export const registerUser = async (data: Record<string, any>) => {
+export const registerUser = async (
+  data: Record<string, string | number | boolean | null>
+) => {
   const response = await axiosInstance.post("/supplier/register", data);
   return response.data;
 };
 
-export const forgotPassword = async (data: Record<string, any>) => {
+export const forgotPassword = async (
+  data: Record<string, string | number | boolean | null>
+) => {
   const response = await axiosInstance.post(
     "/supplier/resetPassword/link",
     data

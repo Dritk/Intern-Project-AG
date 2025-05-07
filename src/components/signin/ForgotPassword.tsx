@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { forgotPasswordSchema } from "../../schema/forgotPasswordSchema";
 import { useMutation } from "@tanstack/react-query";
 import { forgotPassword } from "../../utils/api";
+import { AxiosError } from "axios";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const ForgotPassword = () => {
       toast.clearWaitingQueue();
       methods.reset();
     },
-    onError: (error: any) => {
+    onError: (error: AxiosError<{ message: string }>) => {
       const errorMessage =
         error.response?.data?.message || "Failed to send reset email.";
       toast.error(errorMessage);

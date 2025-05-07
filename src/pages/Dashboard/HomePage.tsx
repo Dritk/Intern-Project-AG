@@ -32,15 +32,15 @@ const HomePage = () => {
           bgColor="bg-blue-500"
           value={`रु${data?.totalRevenue?.toLocaleString()}`}
           tooltip="Total revenue is all the money we made from selling 
-          stuff on our site ( annapurna galleries comission rate+ amount 
-          to be received by supplier excluding comission rate). We subtract 
+          stuff on our site ( annapurna galleries commission rate+ amount 
+          to be received by supplier excluding commission rate). We subtract 
           the returns and cancellations but don't count shipping costs or discounts. 
           Here's the formula:Total Revenue = Total Ordered Product Amount – Ordered 
           Product Returns(if any) - Ordered Product Cancellations (if any) 
           Net Profit: Net profit is the total amount we received as commission from 
           the supplier. Also amounts will be deducted if ordered products gets returned 
-          or canceled.Net Profit = Total Commision Sum - Product Returns Commision Sum 
-          (if any) - Product Cancellations Commision Sum (if any)"
+          or canceled.Net Profit = Total Commission Sum - Product Returns Commission Sum 
+          (if any) - Product Cancellations Commission Sum (if any)"
         />
       </div>
 

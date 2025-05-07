@@ -9,12 +9,21 @@ import {
 } from "recharts";
 import { orderPieChartData } from "../utils/api";
 
+interface LabelProps {
+  cx: number;
+  cy: number;
+  midAngle: number;
+  innerRadius: number;
+  outerRadius: number;
+  percent: number;
+}
+
 const COLORS: Record<string, string> = {
   painting: "#0068B9",
   digital: "#00E396",
   sketch: "#FEB019",
   sculpture: "#FF4560",
-  photogrpahy: "#8F1EF2",
+  photography: "#8F1EF2",
   prints: "#008FFB",
 };
 
@@ -41,7 +50,7 @@ const OrderPieChart = () => {
     innerRadius,
     outerRadius,
     percent,
-  }: any) => {
+  }: LabelProps) => {
     if (percent < PERCENT_THRESHOLD) return null;
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
     const x = cx + radius * Math.cos(-midAngle * RADIAN);
