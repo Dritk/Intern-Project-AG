@@ -7,8 +7,9 @@ import {
   ShoppingCart,
   Package,
 } from "lucide-react";
+import { SummaryData } from "../../utils/types/overallSummaryTypes";
 
-const OverallSummary = ({ summaryData }: { summaryData: any }) => {
+const OverallSummary = ({ summaryData }: { summaryData: SummaryData }) => {
   const summary = [
     {
       label: "Total Orders",

@@ -9,6 +9,13 @@ interface SidebarProps {
   onBackdropClick: () => void;
 }
 
+interface SidebarMenuItem {
+  label: string;
+  icon?: React.ReactNode;
+  children?: SidebarMenuItem[];
+  to?: string;
+}
+
 const AppSidebar: React.FC<SidebarProps> = ({
   collapsed,
   toggled,
@@ -16,15 +23,19 @@ const AppSidebar: React.FC<SidebarProps> = ({
 }) => {
   const location = useLocation();
 
-  const renderMenuItems = (items: any[]) =>
+  const renderMenuItems = (items: SidebarMenuItem[]) =>
     items.map((item) =>
       item.children ? (
-        <SubMenu key={item} label={item.label} icon={item.icon}>
+        <SubMenu
+          key={`submenu-${item.label}`}
+          label={item.label}
+          icon={item.icon}
+        >
           {renderMenuItems(item.children)}
         </SubMenu>
       ) : (
         <MenuItem
-          key={item}
+          key={item.label}
           icon={item.icon}
           component={item.to ? <Link to={item.to} /> : undefined}
           className={location.pathname === item.to ? "active-menu" : ""}

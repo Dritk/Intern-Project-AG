@@ -46,6 +46,7 @@ const SupplierLikesChart = () => {
             onChange={(e) =>
               setTimeFilter(e.target.value as "yearly" | "monthly" | "weekly")
             }
+            className="text-base"
           >
             <option value="yearly">Yearly</option>
             <option value="monthly">Monthly</option>

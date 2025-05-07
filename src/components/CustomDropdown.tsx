@@ -25,7 +25,7 @@ const CustomDropdown = ({
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="cursor-pointer border border-gray-300 rounded py-2 px-8 text-sm w-full flex items-center justify-between"
+        className="cursor-pointer border border-gray-300 rounded py-2 px-8 text-base w-full flex items-center justify-between"
       >
         {selectedValue || label}
         <Funnel className="ml-2 h-5 w-5" />

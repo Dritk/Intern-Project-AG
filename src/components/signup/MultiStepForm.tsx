@@ -14,13 +14,45 @@ import { biographySchema } from "../../schema/biographySchema";
 import { Slide, ToastContainer, toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
 import { registerUser } from "../../utils/api";
+import {
+  PersonalInfoData,
+  ProfileDetailData,
+  ContactInfoData,
+  BiographyData,
+} from "../data/formData";
+import { AxiosError } from "axios";
+
+type FormData = PersonalInfoData &
+  ProfileDetailData &
+  ContactInfoData &
+  BiographyData;
 
 const MultiStepForm = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const totalSteps = 4;
 
-  const [formData, setFormData] = useState<Record<string, any>>({});
+  const [formData, setFormData] = useState<FormData>({
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+    confirmPassword: "",
+    dob: null,
+    gender: "",
+    username: "",
+    genre: "",
+    telNumber: "",
+    altNumber: "",
+    country: "",
+    currency: "",
+    address: "",
+    address2: "",
+    biography: "",
+    termsAccepted: false,
+  });
 
   const stepSchemas = [
     personalInfoSchema,
@@ -31,7 +63,7 @@ const MultiStepForm = () => {
 
   const methods = useForm({
     mode: "onBlur",
-    resolver: yupResolver(stepSchemas[step - 1] as ObjectSchema<any>),
+    resolver: yupResolver(stepSchemas[step - 1] as ObjectSchema<FormData>),
     defaultValues: formData,
   });
 
@@ -60,12 +92,12 @@ const MultiStepForm = () => {
         navigate("/signin");
       }, 2000);
     },
-    onError: (error: any) => {
+    onError: (error: AxiosError<{ message: string }>) => {
       toast.error(error.response?.data?.message || "Signup failed!");
     },
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: Partial<FormData>) => {
     const finalData = { ...formData, ...data };
     mutation.mutate(finalData);
   };

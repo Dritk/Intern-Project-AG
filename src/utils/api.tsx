@@ -6,12 +6,16 @@ export const loginUser = async (data: { email: string; password: string }) => {
   return response.data;
 };
 
-export const registerUser = async (data: Record<string, any>) => {
+export const registerUser = async (
+  data: Record<string, string | number | boolean | null>
+) => {
   const response = await axiosInstance.post("/supplier/register", data);
   return response.data;
 };
 
-export const forgotPassword = async (data: Record<string, any>) => {
+export const forgotPassword = async (
+  data: Record<string, string | number | boolean | null>
+) => {
   const response = await axiosInstance.post(
     "/supplier/resetPassword/link",
     data
@@ -53,6 +57,16 @@ export const fetchNotifications = async () => {
     "/admin/notification/list?limit=100&page=1"
   );
   return data.notification;
+};
+
+export const fetchSupplierLikeDetails = async (
+  timeFilter: "yearly" | "monthly" | "weekly",
+  filterValue: string | number
+) => {
+  const response = await axiosInstance.get(
+    `/admin/home/analytics/likes/${timeFilter}?value=${filterValue}`
+  );
+  return response.data;
 };
 
 //vagiho8046@avulos.com

@@ -9,6 +9,7 @@ import { Slide, toast, ToastContainer } from "react-toastify";
 import { loginSchema } from "../../schema/loginSchema";
 import { loginUser } from "../../utils/api";
 import Cookies from "js-cookie";
+import { AxiosError } from "axios";
 
 const LoginSection = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -28,7 +29,7 @@ const LoginSection = () => {
         sameSite: "Lax",
       });
 
-      toast.success("Login successfull!", {
+      toast.success("Login successful!", {
         transition: Slide,
         pauseOnFocusLoss: false,
       });
@@ -40,7 +41,7 @@ const LoginSection = () => {
         navigate("/home");
       }, 2000);
     },
-    onError: (error: any) => {
+    onError: (error: AxiosError<{ message: string }>) => {
       const errorMessage =
         error.response?.data?.message ?? "Login failed! Please try again.";
       toast.error(errorMessage);
