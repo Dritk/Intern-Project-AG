@@ -24,7 +24,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
   };
 
   return (
-    <nav className="flex items-center bg-white justify-between px-4 py-3 border-b shadow-sm">
+    <nav className="flex items-center bg-white justify-between px-6 py-5 border-b shadow-sm">
       <button
         onClick={toggleSidebar}
         className="p-2 rounded-md hover:bg-gray-200"

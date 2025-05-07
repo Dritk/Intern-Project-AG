@@ -9,6 +9,8 @@ import {
 } from "../data/filterData";
 import { Context } from "../data/context";
 import CustomDropdown from "../CustomDropdown";
+import { useQuery } from "@tanstack/react-query";
+import { fetchSupplierLikeDetails } from "../../utils/api";
 
 type ChartCardProps = {
   title: string;
@@ -27,6 +29,11 @@ const ChartCard = ({ title, headers, imageSrc, message }: ChartCardProps) => {
     weeklyFilter,
     setWeeklyFilter,
   } = useContext(Context);
+
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["suppliergraph"],
+    queryFn: fetchSupplierLikeDetails,
+  });
 
   return (
     <div className="flex flex-col">
@@ -73,6 +80,7 @@ const ChartCard = ({ title, headers, imageSrc, message }: ChartCardProps) => {
         <img src={imageSrc} alt="Empty State" className="w-48" />
       </div>
       <p className="flex justify-center mt-2 opacity-50 text-sm">{message}</p>
+      <div></div>
     </div>
   );
 };

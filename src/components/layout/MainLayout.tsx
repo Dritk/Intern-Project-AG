@@ -42,7 +42,7 @@ const MainLayout = () => {
     <Context.Provider value={contextValue}>
       <div className="flex w-full overflow-hidden">
         <div
-          className={`fixed h-full z-20 transition-all duration-300 shadow-md md:${
+          className={`fixed h-full z-20 transition-all duration-300 shadow-md ${
             collapsed ? "w-[80px]" : "w-[250px]"
           }`}
         >
@@ -68,7 +68,7 @@ const MainLayout = () => {
             <Navbar toggleSidebar={toggleSidebar} />
           </div>
 
-          <main className="flex-1 p-8 bg-[#F5F5F5] mt-10 pt-14">
+          <main className="flex-1 p-8 bg-[#F5F5F5] mt-12 pt-14">
             <Outlet />
           </main>
         </div>

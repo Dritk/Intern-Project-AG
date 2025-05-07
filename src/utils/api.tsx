@@ -55,4 +55,14 @@ export const fetchNotifications = async () => {
   return data.notification;
 };
 
+export const fetchSupplierLikeDetails = async (
+  timeFilter: "yearly" | "monthly" | "weekly",
+  filterValue: string | number
+) => {
+  const response = await axiosInstance.get(
+    `/admin/home/analytics/likes/${timeFilter}?value=${filterValue}`
+  );
+  return response.data;
+};
+
 //vagiho8046@avulos.com

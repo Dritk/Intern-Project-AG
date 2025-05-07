@@ -19,12 +19,16 @@ const AppSidebar: React.FC<SidebarProps> = ({
   const renderMenuItems = (items: any[]) =>
     items.map((item) =>
       item.children ? (
-        <SubMenu key={item} label={item.label} icon={item.icon}>
+        <SubMenu
+          key={`submenu-${item.label}`}
+          label={item.label}
+          icon={item.icon}
+        >
           {renderMenuItems(item.children)}
         </SubMenu>
       ) : (
         <MenuItem
-          key={item}
+          key={`menuitem-${item.label}-${item.to ?? "no-link"}`}
           icon={item.icon}
           component={item.to ? <Link to={item.to} /> : undefined}
           className={location.pathname === item.to ? "active-menu" : ""}
