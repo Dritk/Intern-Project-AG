@@ -1,3 +1,4 @@
+import { getFilterValue } from "../components/data/filterData";
 import axiosInstance from "../config.ts/axiosInstance";
 
 export const loginUser = async (data: { email: string; password: string }) => {
@@ -63,9 +64,12 @@ export const fetchSupplierLikeDetails = async (
   timeFilter: "yearly" | "monthly" | "weekly",
   filterValue: string | number
 ) => {
+  const valueToSend = getFilterValue(timeFilter, filterValue);
+
   const response = await axiosInstance.get(
-    `/admin/home/analytics/likes/${timeFilter}?value=${filterValue}`
+    `/admin/home/analytics/likes/${timeFilter}?value=${valueToSend}`
   );
+
   return response.data;
 };
 

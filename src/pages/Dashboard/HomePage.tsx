@@ -85,7 +85,7 @@ const HomePage = () => {
         <div className="bg-white p-6 md:w-[40%] w-full border border-gray-200  text-blue-900 font-medium ">
           <ChartCard
             title="Supplier Likes Graph Analysis"
-            headers={["S/N", "Supplier Details", "UserList"]}
+            headers={["S/N", "Supplier Details", "User List"]}
             imageSrc="./Empty-product.png"
             message="No Suppliers are liked by users during this period."
           />

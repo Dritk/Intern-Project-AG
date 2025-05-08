@@ -29,7 +29,7 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({ id, label }) => {
 
       {errors[id]?.message && (
         <p className="text-red-500 text-sm mt-1">
-          {getErrorMessage(errors[id])}
+          {getErrorMessage(errors[id])}c
         </p>
       )}
     </div>
